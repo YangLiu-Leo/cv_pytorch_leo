@@ -1,0 +1,53 @@
+我的电脑配置：
+pytorch安装在python3.7下，tensorflow安装在python3.6下
+
+通用知识：
+在ubuntu14.04系统中python和pip存在2个位置，分别是/usr/bin/  和/usr/local/bin/
+1.python
+python python3可以看到这两个命令软链接到了哪个版本的python(如果想修改软链接，搜索python3.5更新到python3.7)
+env |grep python  可以看到当前环境变量里的python
+whereis python  可以看到已安装的所有python
+
+echo $PYTHONPATH　　python的环境变量，可以在.bashrc中修改
+
+2.pip　　
+[python3安装完成后，python调用的是python2.7，python3命令调用python3
+我们希望pip安装的是python2.7的包，pip3安装的是python3的，故需要安装pip3
+不同的pip会把包安装到对应的python下面，pip 对应python2，pip3 对应python3
+同时有python2、python3 使用pip:　　python2 -m pip install XXX　或者 python3 -m pip install XXX]
+
+pip3 list  可以列出pip管理的包
+pip3 -V  可以看到该pip是哪个版本python的pip(有可能是ubuntu自带的，也可能是anaconda带的)
+which pip3 可以看到pip在哪
+
+pip的可执行文件
+ls /usr/local/bin/ |grep pip
+ls /home/yg00a00019070411000n00/.local/bin/ |grep pip
+3.深度学习框架
+python3 -c "import tensorflow as tf; print(tf.__version__)"　　可以输出tf的版本信息
+tf.__path__　　输出tf路径
+
+4.GPU加速
+nvidia-smi  可以看到nvidia GPU驱动版本
+nvcc --version  可以看到CUDA版本
+
+5.docker
+sudo systemctl enable docker  使用systemd开机自启docker
+sudo systemctl restart docker.service　　重启docker
+
+
+6.压缩图片
+convert -resize 20% pallet.jpg new.jpg
+
+7.ubuntu系统资源
+cat /proc/cpuinfo　　查看cpu信息
+lspci | grep -i vga　　查看显卡型号
+lspci -vnn | grep VGA -A 12
+free -h  内存大小
+df -h
+
+8.dataset
+fer2013  人脸表情识别(用vgg网络做识别率不高)
+MNIST 手写数字数据集
+
+
