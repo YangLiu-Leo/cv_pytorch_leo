@@ -40,7 +40,7 @@ pip install -r requirements.txt　在另一台机器上新建虚拟环境，复�
 
 学员手册：https://shimo.im/docs/ne3VVNlN1Js8FB3b/read
 
-[baseline]: https://github.com/datawhalechina/team-learning/tree/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%	"课程内容、任务及baseline"
+课程内容、任务及baseline：　https://github.com/datawhalechina/team-learning/tree/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%
 
 
 
