@@ -1,4 +1,4 @@
-# cv_learn
+# cv_pytorch_learn
 
 ### 一　python虚拟环境使用
 
