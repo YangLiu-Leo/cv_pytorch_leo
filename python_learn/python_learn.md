@@ -167,6 +167,126 @@ for each in e:
   import random
   secret = random.randint(1, 10) #[1,10]之间的随机数
   
+  ### plot打印数组x,y 绘制多条曲线并标记颜色和名字
+# # 计算正弦和余弦曲线上的点的 x 和 y 坐标 
+# x = np.arange(0,  3  * np.pi,  0.1) 
+# y_sin = np.sin(x) 
+# y_cos = np.cos(x)  
+# # 建立 subplot 网格，高为 2，宽为 1  
+# # 激活第一个 subplot
+# #     plt.subplot(2,  1,  1)  
+# # 绘制第一个图像 
+# plt.plot(x, y_sin, color='green', label='Sine') 
+# plt.title('Sine')  
+# # 将第二个 subplot 激活，并绘制第二个图像
+# #     plt.subplot(2,  1,  2) 
+# plt.plot(x, y_cos, color='skyblue', label='Cosine') 
+# plt.title('Cosine')  
+# plt.legend() # 显示图例、
+# # 展示图像
+# plt.show()
+  
   1、编写一个Python程序来查找那些既可以被7整除又可以被5整除的数字，介于1500和2700之间。
   res = [i for i in range(1500,2700) if i%7==0 and i%5==0]
+  2.计算龟兔赛跑谁获胜
+	兔子每超过乌龟s米，就会停下来休息s秒
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+# train_df = pd.read_csv('myspace/train_set.csv', sep='\t', nrows=20)
+
+#输入:
+
+#输入只有一行，包含用空格隔开的五个正整数v1，v2，t，s，l，其中(v1,v2< =100;t< =300;s< =10;l< =10000且为v1,v2的公倍数)
+
+#输出:
+
+#输出包含两行，第一行输出比赛结果——一个大写字母“T”或“R”或“D”，分别表示乌龟获胜，兔子获胜，或者两者同时到达终点。
+
+#第二行输出一个正整数，表示获胜者（或者双方同时）到达终点所耗费的时间（秒数）。
+
+# v1,v2,t,s,l = map(int,input("input:  v1,v2,t,s,l ").split())
+# v1,v2,t,s,l = 1,2,3,2,100
+v1=2
+v2=1
+t=10
+s=8
+l=50
+
+# t_com是当前时间 每个循环+1; t_sum记录i每次兔子休息了的时间
+t_com = 0
+t_sum = []
+rab_run = True
+# rab = v1*t_com
+# tor = v2*t_com
+t_plot = []
+rab = []
+tor = []
+
+while(v2*t_com < l):
+
+
+    if rab_run:
+        #### 计算兔子累计休息的时间，要记得每次都先清0
+        sum_rest = 0
+        for t in t_sum:
+                sum_rest += t
+#         print(t_com,sum_rest,t_com-sum_rest)
+        rab_tmp = v1*(t_com - sum_rest)
+        if(rab_tmp>=l):
+            print('rabbit win')
+            break
+         # 兔子在跑 且 路程大于乌龟s
+        if(rab_tmp > t+v2*t_com):
+            rab_run = False
+            t_stop=t_com ###记录一次兔子停下的时间
+ 
+    # 兔子停下 且 休息了s
+    if not rab_run and t_com - t_stop > s:
+        rab_run = True
+        t_sum.append(t_com-t_stop) # 把兔子本次休息了的时间记录到数组里
+#         print(t_com,t_stop,t_com-t_stop)
+        
+    t_com+=1
+
+    #开始画图
+    t_plot.append(t_com)
+    rab.append(rab_tmp)
+    tor.append(v2*t_com)
+
+### 法一 scatter持续画点，构成两条曲线
+    plt.title("x-t.") 
+#     plt.annotate("(3,6)", xy = (3, 6), xytext = (4, 5), arrowprops = dict(facecolor = 'black', shrink = 0.1))
+    plt.xlabel("t")
+    plt.ylabel("x")
+    plt.scatter(t_com, v2*t_com, color='green', label='rabbit')
+    plt.scatter(t_com, rab_tmp, color='skyblue', label='tortoise') ### plot 会把前面画上去的点清掉
+    plt.plot()
+#     plt.pause(0.1)         # 暂停一秒，下次画的点将出现在一个新窗口
+#     plt.show() #感觉没啥用,而且下个循环画的点将出现在一个新窗口，是保证产生新的instance？
+
+
+else:
+    if(rab_tmp>=l):
+        print('draw') #平局
+    else:
+        print('tortoise win')
+
+### 法二 plot一次性画两条曲线
+# plt.plot(t_plot, rab, color='green', label='rabbit') 
+# plt.plot(t_plot, tor, color='skyblue', label='tortoise') 
+# plt.title('x-t curve')  
+plt.legend() # 显示图例、
+# 展示图像
+plt.show()
+        
+
 ```
+
+
+
+### task3 异常处理
+
+C++里有try catch;
+
+pyton里有try except，应用报错机制，如果代码抛出错误程序会停止运行并打印错误
