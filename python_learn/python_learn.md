@@ -1,3 +1,5 @@
+
+
 ### task1 变量 运算符 数据类型 位运算
 
 ##### 1.数据类型 int float bool
@@ -290,3 +292,276 @@ plt.show()
 C++里有try catch;
 
 pyton里有try except，应用报错机制，如果代码抛出错误程序会停止运行并打印错误
+
+
+
+### task4 列表 元组 字符串
+
+# 
+
+简单数据类型
+
+- 整型`<class 'int'>`
+- 浮点型`<class 'float'>`
+- 布尔型`<class 'bool'>`
+
+容器数据类型
+
+- 列表`<class 'list'>`
+- 元组`<class 'tuple'>`
+- 字典`<class 'dict'>`
+- 集合`<class 'set'>`
+- 字符串`<class 'str'>`
+
+
+
+列表不像元组，列表内容可更改 (mutable)，因此附加 (`append`, `extend`)、插入 (`insert`)、删除 (`remove`, `pop`) 这些操作都可以用在它身上。
+
+#### 1.添加元素
+
+`list.append(obj)` 在列表末尾添加新的对象，只接受一个参数，参数可以是任何数据类型，被追加的元素在 list 中保持着原结构类型。
+
+`list.extend(seq)` 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。
+
+`list.insert(index, obj)` 在编号 `index` 位置插入 `obj`。
+
+#### 2.移除元素
+
+`list.remove(obj)` 移除列表中某个值的第一个匹配项
+`list.pop([index=-1])` 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值。0表示第一位元素，-1表示倒数第一位元素
+`del x[0:2]` 从列表中删除一个元素，且不再以任何方式使用它
+
+```
+
+x = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+x.remove('Monday')
+print(x)  # ['Tuesday', 'Wednesday', 'Thursday', 'Friday']
+
+y = x.pop()
+print(y)  # Friday
+
+y = x.pop(0)
+print(y)  # Monday
+
+y = x.pop(-2)
+```
+
+#### 3.获取列表中的元素
+
+- 情况 4 - "start : stop : step"
+- 以具体的 `step` 从编号 `start` 往编号 `stop` 切片。注意最后把 `step` 设为 -1，相当于将列表反向排列。
+
+【例子】
+
+```
+week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+print(week[1:4:2])  # ['Tuesday', 'Thursday']
+print(week[:4:2])  # ['Monday', 'Wednesday']
+print(week[1::2])  # ['Tuesday', 'Thursday']
+print(week[::-1])  
+# ['Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday']
+```
+
+- 情况 5 - " : "
+- 复制列表中的所有元素（浅拷贝）。
+
+【例子】
+
+```
+week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+print(week[:])  #切片操作拷贝，但依然不算深拷贝，只会拷贝第一层
+list1 = week
+# ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+
+list1 = [1,2,[3,4]]
+list2 = list1[:]
+list2[0]=0
+list2[2][0]=8
+print list1  # [1, 2, [8, 4]]
+
+
+list2 = week #浅拷贝
+week.sort() #浅拷贝，如果改变list2 week也会改变，两个一起改变。为了保证A B不被一起修改，这里要用深拷贝deepcopy
+id(list2) #可以看到地址
+
+```
+
+**浅拷贝的意思:**
+**如果p->a; q=p; 则q->a**
+
+**c++涉及指针复制的时候要用深拷贝；python = 给list变量赋值时不要用浅拷贝**
+
+
+
+#### 4.列表的其他方法
+
+`list.count(obj)` 统计某个元素在列表中出现的次数
+
+【例子】
+
+```
+list1 = [123, 456] * 3
+print(list1)  # [123, 456, 123, 456, 123, 456]
+num = list1.count(123)
+print(num)  # 3
+```
+
+`list.index(x[, start[, end]])` 从列表中找出某个值第一个匹配项的索引位置
+
+【例子】
+
+```
+list1 = [123, 456] * 5
+print(list1.index(123))  # 0
+print(list1.index(123, 1))  # 2
+print(list1.index(123, 3, 7))  # 4
+```
+
+`list.sort(key=None, reverse=False)` 对原列表进行排序。
+
+`key` -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。
+
+`reverse` -- 排序规则，`reverse = True` 降序， `reverse = False` 升序（默认）。
+
+【例子】
+
+```
+# 获取列表的第二个元素
+def takeSecond(elem):
+    return elem[1]
+
+
+x = [(2, 2), (3, 4), (4, 1), (1, 3)]
+x.sort(key=takeSecond)
+print(x)
+# [(4, 1), (2, 2), (1, 3), (3, 4)]
+
+x.sort(key=lambda a: a[0]) #传入list a，返回a[0]
+print(x)
+# [(1, 3), (2, 2), (3, 4), (4, 1)]
+```
+
+#### 作业
+
+1.列表操作
+
+```
+1. 在列表的末尾增加元素15
+2. 在列表的中间位置插入元素20
+3. 将列表[2, 5, 6]合并到lst中
+4. 移除列表中索引为3的元素
+5. 翻转列表里的所有元素
+6. 对列表里的元素进行排序，从小到大一次，从大到小一次
+
+lst = [2, 5, 6, 7, 8, 9, 2, 9, 9]
+lst.append(15)
+print lst
+
+lst.insert((int)(len(lst)/2),20)
+print lst
+
+lst.extend([2,3,5])
+print lst
+
+lst.pop(3)
+print lst
+
+lst.reverse()
+print lst
+
+lst.sort()
+print lst
+
+lst.sort(reverse = True)
+print lst
+```
+
+
+
+```
+'''
+2、修改列表
+问题描述：
+lst = [1, [4, 6], True]
+请将列表里所有数字修改成原来的两倍
+'''
+
+lst = [1, [4, 6], True]
+
+def double_lst(l):
+  for i in range(len(l)):
+	if type(l[i]) is int:
+		l[i] <<= 1
+	elif type(l[i]) is list:
+		double_lst(l[i])
+  return l
+
+b = double_lst(lst)
+print b
+```
+
+```
+#### 852. 山脉数组的峰顶索引](https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/)
+
+class Solution:
+  def peakIndexInMountainArray(self, A: List[int]) -> int:
+​    B = A[:]  #为了保证A B不被一起修改，这里要用深拷贝deepcopy或者切片操作
+​    B.sort()
+​    return A.index(B[-1])
+
+test = [0,2,1,0]
+res = Solution()
+print (res.peakIndexInMountainArray(test)) 
+```
+
+
+
+### 5.元组
+
+- Python 的元组与列表类似，不同之处在于tuple被创建后就不能对其进行修改，类似字符串。
+- 元组使用小括号，列表使用方括号。
+- 元组与列表类似，也用整数来对它进行索引 (indexing) 和切片 (slicing)。
+
+
+
+元组大小和内容都不可更改，因此只有 `count` 和 `index` 两种方法。
+
+【例子】
+
+```
+t = (1, 10.31, 'python')
+print(t.count('python'))  # 1
+print(t.index(10.31))  # 1
+```
+
+### 6.作业
+
+```
+1.元组概念
+写出下面代码的执行结果和最终结果的类型
+
+(1, 2)*2  #(1, 2, 1, 2) <type 'tuple'>
+(1, )*2  #(1, 1) <type 'tuple'>
+(1)*2  #2 <type 'int'>
+```
+
+```
+2. 以下代码属于从元组中拆包
+a, b = 1, 2
+```
+
+leetcode 5题 最长回文子串
+
+
+
+immutable object(str, int, tuple, dict's key)，if modified value, will creat a new object
+
+mutable object(list, dict, set), variables will change
+
+```
+(mutable oprations like y.append(10) and y.sort(), but y =y+[10] and sorted(y) creat a new object)
+```
+
+也就是说，不可变类型 a=2  b=a。 首先 b也会存储a的地址；如果修改a=4，a会重新指向一块地址；如果修改b，b也会重新指向一块地址。所以=操作后，两个变量是独立互不干扰的
+
+但是对于不可变类型 lst1=[1,2,3]  lst2=lst1。无论修改lst1还是lst2，二者都是指向一块地址
