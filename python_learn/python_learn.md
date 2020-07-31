@@ -1,5 +1,3 @@
-
-
 ### task1 变量 运算符 数据类型 位运算
 
 ##### 1.数据类型 int float bool
@@ -565,3 +563,44 @@ mutable object(list, dict, set), variables will change
 也就是说，不可变类型 a=2  b=a。 首先 b也会存储a的地址；如果修改a=4，a会重新指向一块地址；如果修改b，b也会重新指向一块地址。所以=操作后，两个变量是独立互不干扰的
 
 但是对于不可变类型 lst1=[1,2,3]  lst2=lst1。无论修改lst1还是lst2，二者都是指向一块地址
+
+
+
+#### 7.集合序列
+
+1)字典增加一个或多个元素
+
+```
+d = {'a': 1}
+d.update(b=2)  #也可以 
+d.update({‘b’: 2})
+print(d)
+```
+
+2)集合set 相当于字典只有key，且元素不重复
+
+3)序列
+
+```
+sorted(iterable, key=None, reverse=False) 
+```
+
+ 对所有可迭代的对象进行排序操作。
+
+- `iterable` -- 可迭代对象。
+- `key` -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。
+- `reverse` -- 排序规则，`reverse = True` 降序 ， `reverse = False` 升序（默认）。
+- 返回重新排序的列表。
+
+【例子】
+
+```
+x = [-8, 99, 3, 7, 83]
+print(sorted(x))  # [-8, 3, 7, 83, 99]
+print(sorted(x, reverse=True))  # [99, 83, 7, 3, -8]
+
+t = ({"age": 20, "name": "a"}, {"age": 25, "name": "b"}, {"age": 10, "name": "c"})
+x = sorted(t, key=lambda a: a["age"])
+print(x)
+# [{'age': 10, 'name': 'c'}, {'age': 20, 'name': 'a'}, {'age': 25, 'name': 'b'}]
+```
