@@ -75,7 +75,7 @@ Pyste==0.9.10
 python-dateutil==2.4.2
 python-snappy==0.5
 pytz==2014.10
-PyYAML==3.11
+PyYAML==5.4
 pyzmq==15.2.0
 qrcode==6.1
 roman==2.0.0
