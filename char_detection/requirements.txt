@@ -96,7 +96,7 @@ Sphinx==1.3.6
 sphinx-rtd-theme==0.1.9
 tornado==4.2.1
 trollius==2.0.1
-Twisted==16.0.0
+Twisted==22.1.0
 txaio==1.0.0
 unity-lens-photos==1.0
 vcstools==0.1.42
