@@ -101,7 +101,7 @@ txaio==1.0.0
 unity-lens-photos==1.0
 vcstools==0.1.42
 wadllib==1.3.2
-Werkzeug==0.15.4
+Werkzeug==0.15.5
 wstool==0.1.17
 WTForms==2.2.1
 wxPython==3.0.2.0
